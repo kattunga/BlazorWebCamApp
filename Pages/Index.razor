@@ -4,7 +4,7 @@
 <h1>Fun Blazor Web Camera Application</h1>
 
 <div>
-    <canvas id="@options.CanvasID" 
+    <canvas id="@options.CanvasID"
             style="background-color:lightgray;"
             width="@options.Width"
             height="360">
@@ -22,8 +22,16 @@
 
 @code{
 
-    WebCamOptions options = new WebCamOptions() 
-        { 
+    public class WebCamOptions
+    {
+        public int Width { get; set; } = 320;
+        public string VideoID { get; set; }
+        public string CanvasID { get; set; }
+        public string Filter { get; set; } = null;
+    }
+
+    WebCamOptions options = new WebCamOptions()
+        {
             CanvasID = "canvas",
              VideoID = "video"
         };
@@ -31,7 +39,7 @@
     protected override void OnInitialized()
     {
 
-        options.Filter = 
+        options.Filter =
             "contrast(1.4) sepia(0.2) blur(3px) saturate(200%) hue-rotate(200deg)";
         options.Width = 480;
     }
